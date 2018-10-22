@@ -36,5 +36,24 @@ namespace Lib
                 return false;
             }
         }
+        public bool IsFactorial (int number)
+        {
+            int product = 1;
+            bool flag = true;
+            for (int i = 1; i < number; i++)
+            {
+                product *= i;
+                if (product == number)
+                {
+                    flag = true;
+                    break;
+                }
+                else
+                {
+                   flag = false;
+                }
+            }
+            return flag ? true : false;
+        }
     }
 }
