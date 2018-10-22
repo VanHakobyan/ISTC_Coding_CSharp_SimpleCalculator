@@ -83,7 +83,7 @@ namespace Lib
 
             return diviser;
         }
-        public bool Simple(int n)
+        public bool IsNumberPrime(int n)
         {
             for (int i = 2; i < n; i++)
             {
@@ -93,6 +93,11 @@ namespace Lib
                 }
             }
             return true;
+        }
+        public double GeometricMean(int n,int b)
+        {
+            double c = (n + b) / 2;
+            return c;
         }
 
     }
