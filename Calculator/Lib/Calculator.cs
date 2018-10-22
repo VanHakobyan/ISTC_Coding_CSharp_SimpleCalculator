@@ -105,14 +105,13 @@ public int OddDigitSum (int num)
 
         public double GeometricMean(double a , double b)
         {
-            double N1 = Convert.ToDouble(a);
-            double N2 = Convert.ToDouble(a);
-            double GeomMean = 0;
-            if (N1 != 0 && N2 != 0)
+            double GeomMean=0;
+            if (a != 0 && b != 0)
             {
-                 GeomMean = (N1 * N2) / 2;
+             GeomMean = (a * b) / 2;
             }
             return GeomMean;
+
         }
         public bool IsNumberPrime(int n)
         {
@@ -136,7 +135,7 @@ public int OddDigitSum (int num)
         {
             return a * b / BiggestCommonDiviser(a, b);
         }
-        public bool IsFactorial (int number)
+        /* public bool IsFactorial (int number)
         {
             int product = 1;
             bool flag = true;
@@ -154,8 +153,8 @@ public int OddDigitSum (int num)
                 }
             }
             return flag ? true : false;
-        }
-        
+        } 
+        */
         static bool IsNumberDecrease(int number)
         {
             int n = number, numCount = (int)Math.Log10(number);
