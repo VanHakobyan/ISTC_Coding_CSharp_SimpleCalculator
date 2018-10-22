@@ -100,5 +100,29 @@ namespace Lib
             return c;
         }
 
+
+        public int SmallestCommonMultiplier(int a, int b)
+        {
+            return a * b / BiggestCommonDiviser(a, b);
+        }
+        public bool IsFactorial (int number)
+        {
+            int product = 1;
+            bool flag = true;
+            for (int i = 1; i < number; i++)
+            {
+                product *= i;
+                if (product == number)
+                {
+                    flag = true;
+                    break;
+                }
+                else
+                {
+                   flag = false;
+                }
+            }
+            return flag ? true : false;
+        }
     }
 }
