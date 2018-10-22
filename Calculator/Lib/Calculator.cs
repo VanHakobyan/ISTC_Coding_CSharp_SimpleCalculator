@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace Lib
 {
@@ -17,7 +18,6 @@ namespace Lib
                 }
                 while(a % i == 0)
                     a /= i;
-
                 i++;
             }
             return count;
@@ -54,6 +54,19 @@ namespace Lib
                 return false;
             }
         }
+      
+      public bool GetSymtricNumber (ulong a)
+      {
+            string N = Convert.ToString(a);
+            for (int i = 0; i < N.Length; i++)
+            {
+                if (N[i] != N[N.Length - i])
+                    return false;
+            }
+            return true;
+ 
+      }
+
 
         public int BiggestCommonDiviser(int a, int b)
         {
@@ -69,6 +82,47 @@ namespace Lib
                 }
 
             return diviser;
+        }
+        public bool IsNumberPrime(int n)
+        {
+            for (int i = 2; i < n; i++)
+            {
+                if (n % i == 0)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+        public double GeometricMean(int n,int b)
+        {
+            double c = (n + b) / 2;
+            return c;
+        }
+
+
+        public int SmallestCommonMultiplier(int a, int b)
+        {
+            return a * b / BiggestCommonDiviser(a, b);
+        }
+        public bool IsFactorial (int number)
+        {
+            int product = 1;
+            bool flag = true;
+            for (int i = 1; i < number; i++)
+            {
+                product *= i;
+                if (product == number)
+                {
+                    flag = true;
+                    break;
+                }
+                else
+                {
+                   flag = false;
+                }
+            }
+            return flag ? true : false;
         }
     }
 }
