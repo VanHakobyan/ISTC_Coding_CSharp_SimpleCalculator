@@ -119,5 +119,27 @@ namespace Lib
             }
             return flag ? true : false;
         }
+        public int Factorial (int number)
+        {
+            if (number == 1) return 1;
+            return Factorial(number - 1) * number;
+        }
+        public bool IsFactorialNew (int number)
+        {
+            bool flag = true;
+            for (int i = 1; i < number; i++)
+            {
+                if (Factorial(i) == number)
+                {
+                    flag = true;
+                    break;
+                }
+                else
+                {
+                    flag = false;
+                }
+            }
+            return flag ? true : false;
+        }
     }
 }
