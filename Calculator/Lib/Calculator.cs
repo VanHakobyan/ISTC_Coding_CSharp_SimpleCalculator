@@ -118,7 +118,7 @@ namespace Lib
         {
             return a * b / BiggestCommonDiviser(a, b);
         }
-        public bool IsFactorial (int number)
+        /* public bool IsFactorial (int number)
         {
             int product = 1;
             bool flag = true;
@@ -136,8 +136,8 @@ namespace Lib
                 }
             }
             return flag ? true : false;
-        }
-        
+        } 
+        */
         static bool IsNumberDecrease(int number)
         {
             int n = number, numCount = (int)Math.Log10(number);
