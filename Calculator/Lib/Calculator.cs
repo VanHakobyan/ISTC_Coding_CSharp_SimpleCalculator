@@ -5,6 +5,24 @@ namespace Lib
 {
     public class Calculator
     {
+public int OddDigitSum (int num)
+        {
+            int N = Convert.ToString(num).Length;
+            int[] number = new int[N];
+            int sum = 0;
+            bool flag = false;
+            for (int i = 0; i < number.Length; i++)
+            {
+                number[i] = num / (int)Math.Pow(10, i) % 10;
+                if(number[i]%2!=0&&number[i]>4)
+                {
+                    sum += number[i];
+                    flag = true;
+                }
+                
+            }
+            return (flag) ? sum : -1;
+        }
         public int GetSimpleMultCount(int a)
         {
             int[] mem = new int[500];
