@@ -55,7 +55,7 @@ namespace Lib
             }
         }
       
-      public bool GetSymtricNumber (ulong a)
+      public bool IsSymtricNumber (ulong a)
       {
             string N = Convert.ToString(a);
             for (int i = 0; i < N.Length; i++)
@@ -82,8 +82,21 @@ namespace Lib
                 }
 
             return diviser;
+                                 
         }
-        public bool Simple(int n)
+
+        public double GeometricMean(double a , double b)
+        {
+            double N1 = Convert.ToDouble(a);
+            double N2 = Convert.ToDouble(a);
+            double GeomMean = 0;
+            if (N1 != 0 && N2 != 0)
+            {
+                 GeomMean = (N1 * N2) / 2;
+            }
+            return GeomMean;
+        }
+        public bool IsNumberPrime(int n)
         {
             for (int i = 2; i < n; i++)
             {
@@ -93,6 +106,11 @@ namespace Lib
                 }
             }
             return true;
+        }
+        public double GeometricMean(int n,int b)
+        {
+            double c = (n + b) / 2;
+            return c;
         }
 
 
