@@ -5,6 +5,24 @@ namespace Lib
 {
     public class Calculator
     {
+        public int OddDigitSum(int num)
+        {
+            int N = Convert.ToString(num).Length;
+            int[] number = new int[N];
+            int sum = 0;
+            bool flag = false;
+            for (int i = 0; i < number.Length; i++)
+            {
+                number[i] = num / (int)Math.Pow(10, i) % 10;
+                if (number[i] % 2 != 0 && number[i] > 4)
+                {
+                    sum += number[i];
+                    flag = true;
+                }
+
+            }
+            return (flag) ? sum : -1;
+        }
         public int GetSimpleMultCount(int a)
         {
             int[] mem = new int[500];
@@ -16,7 +34,7 @@ namespace Lib
                     mem[count] = i;
                     count++;
                 }
-                while(a % i == 0)
+                while (a % i == 0)
                     a /= i;
                 i++;
             }
@@ -33,9 +51,9 @@ namespace Lib
                 num /= 10;
             }
 
-            return (mult > 1)? mult : int.MinValue;
+            return (mult > 1) ? mult : int.MinValue;
         }
-        public bool IsPerfect (int number)
+        public bool IsPerfect(int number)
         {
             int divisorSum = 0;
             for (int i = 1; i < number; i++)
@@ -54,9 +72,9 @@ namespace Lib
                 return false;
             }
         }
-      
-      public bool GetSymtricNumber (ulong a)
-      {
+
+        public bool IsSymtricNumber(ulong a)
+        {
             string N = Convert.ToString(a);
             for (int i = 0; i < N.Length; i++)
             {
@@ -64,8 +82,8 @@ namespace Lib
                     return false;
             }
             return true;
- 
-      }
+
+        }
 
 
         public int BiggestCommonDiviser(int a, int b)
@@ -82,8 +100,20 @@ namespace Lib
                 }
 
             return diviser;
+
         }
-        public bool Simple(int n)
+
+        public double GeometricMean(double a, double b)
+        {
+            double GeomMean = 0;
+            if (a != 0 && b != 0)
+            {
+                GeomMean = (a * b) / 2;
+            }
+            return GeomMean;
+
+        }
+        public bool IsNumberPrime(int n)
         {
             for (int i = 2; i < n; i++)
             {
@@ -94,13 +124,72 @@ namespace Lib
             }
             return true;
         }
+        public double GeometricMean(int n, int b)
+        {
+            double c = (n + b) / 2;
+            return c;
+        }
 
 
         public int SmallestCommonMultiplier(int a, int b)
         {
             return a * b / BiggestCommonDiviser(a, b);
         }
-
-
+        /* public bool IsFactorial (int number)
+        {
+            int product = 1;
+            bool flag = true;
+            for (int i = 1; i < number; i++)
+            {
+                product *= i;
+                if (product == number)
+                {
+                    flag = true;
+                    break;
+                }
+                else
+                {
+                   flag = false;
+                }
+            }
+            return flag ? true : false;
+        } 
+        */
+        static bool IsNumberDecrease(int number)
+        {
+            int n = number, numCount = (int)Math.Log10(number);
+            while (n > 0 && numCount > 0)
+            {
+                int a = n / (int)Math.Pow(10, numCount);
+                int temp = n % (int)Math.Pow(10, numCount);
+                int b = temp / (int)Math.Pow(10, numCount - 1);
+                if (a <= b) return false;
+                n %= (int)Math.Pow(10, numCount);
+                numCount--;
+            }
+            return true;
+        }
+        public int Factorial(int number)
+        {
+            if (number == 1) return 1;
+            return Factorial(number - 1) * number;
+        }
+        public bool IsFactorialNew(int number)
+        {
+            bool flag = true;
+            for (int i = 1; i < number; i++)
+            {
+                if (Factorial(i) == number)
+                {
+                    flag = true;
+                    break;
+                }
+                else
+                {
+                    flag = false;
+                }
+            }
+            return flag ? true : false;
+        }
     }
 }
