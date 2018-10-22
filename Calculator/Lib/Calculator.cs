@@ -5,7 +5,7 @@ namespace Lib
 {
     public class Calculator
     {
-public int OddDigitSum (int num)
+        public int OddDigitSum(int num)
         {
             int N = Convert.ToString(num).Length;
             int[] number = new int[N];
@@ -14,12 +14,12 @@ public int OddDigitSum (int num)
             for (int i = 0; i < number.Length; i++)
             {
                 number[i] = num / (int)Math.Pow(10, i) % 10;
-                if(number[i]%2!=0&&number[i]>4)
+                if (number[i] % 2 != 0 && number[i] > 4)
                 {
                     sum += number[i];
                     flag = true;
                 }
-                
+
             }
             return (flag) ? sum : -1;
         }
@@ -34,7 +34,7 @@ public int OddDigitSum (int num)
                     mem[count] = i;
                     count++;
                 }
-                while(a % i == 0)
+                while (a % i == 0)
                     a /= i;
                 i++;
             }
@@ -51,9 +51,9 @@ public int OddDigitSum (int num)
                 num /= 10;
             }
 
-            return (mult > 1)? mult : int.MinValue;
+            return (mult > 1) ? mult : int.MinValue;
         }
-        public bool IsPerfect (int number)
+        public bool IsPerfect(int number)
         {
             int divisorSum = 0;
             for (int i = 1; i < number; i++)
@@ -72,9 +72,9 @@ public int OddDigitSum (int num)
                 return false;
             }
         }
-      
-      public bool IsSymtricNumber (ulong a)
-      {
+
+        public bool IsSymtricNumber(ulong a)
+        {
             string N = Convert.ToString(a);
             for (int i = 0; i < N.Length; i++)
             {
@@ -82,8 +82,8 @@ public int OddDigitSum (int num)
                     return false;
             }
             return true;
- 
-      }
+
+        }
 
 
         public int BiggestCommonDiviser(int a, int b)
@@ -100,15 +100,15 @@ public int OddDigitSum (int num)
                 }
 
             return diviser;
-                                 
+
         }
 
-        public double GeometricMean(double a , double b)
+        public double GeometricMean(double a, double b)
         {
-            double GeomMean=0;
+            double GeomMean = 0;
             if (a != 0 && b != 0)
             {
-             GeomMean = (a * b) / 2;
+                GeomMean = (a * b) / 2;
             }
             return GeomMean;
 
@@ -124,7 +124,7 @@ public int OddDigitSum (int num)
             }
             return true;
         }
-        public double GeometricMean(int n,int b)
+        public double GeometricMean(int n, int b)
         {
             double c = (n + b) / 2;
             return c;
@@ -169,12 +169,12 @@ public int OddDigitSum (int num)
             }
             return true;
         }
-        public int Factorial (int number)
+        public int Factorial(int number)
         {
             if (number == 1) return 1;
             return Factorial(number - 1) * number;
         }
-        public bool IsFactorialNew (int number)
+        public bool IsFactorialNew(int number)
         {
             bool flag = true;
             for (int i = 1; i < number; i++)
