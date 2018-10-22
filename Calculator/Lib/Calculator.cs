@@ -27,7 +27,7 @@ namespace Lib
             string N = Convert.ToString(a);
             for (int i = 0; i < N.Length; i++)
             {
-                if (N[i] != N[N.Length - 1])
+                if (N[i] != N[N.Length - i])
                     return false;
             }
             return true;
