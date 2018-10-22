@@ -19,7 +19,6 @@ xmlns:sys="clr-namespace:System;assembly=mscorlib"
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="215*"/>
-            <ColumnDefinition Width="177*"/>
         </Grid.ColumnDefinitions>
 
         <Grid Grid.Column="0">
@@ -48,12 +47,26 @@ xmlns:sys="clr-namespace:System;assembly=mscorlib"
             <StackPanel Grid.Row="1" Orientation="Vertical" Margin="0,20,10,0">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" Margin="5">Select operation</TextBlock>
-                    <ComboBox Name="Combo">
+                    <ComboBox Name="Combo" SelectionChanged="ComboBox_SelectionChanged">
        
                     </ComboBox>
                 </StackPanel>
+
             </StackPanel>
+
+
+            <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,20,10,0">
+                <Label Name="Result" Margin="5">Result</Label>
+
+
+                <Label Name="label" Margin="5"></Label>
+
+            </StackPanel>
+
+
         </Grid>
+
+  
 
 
     </Grid>

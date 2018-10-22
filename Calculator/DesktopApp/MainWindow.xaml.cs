@@ -1,4 +1,5 @@
-﻿using Lib;
+﻿using DesktopApp.Helpers;
+using Lib;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -24,26 +25,51 @@ namespace DesktopApp
     public partial class MainWindow : Window
     {
         //ObservableCollection<int> Functions;
-        List<string> Functions;
+        List<string> twoPositionalFunctions;
+        List<string> onePositionalFunctions;
+
+        Calculator _calculator;
 
         public MainWindow()
         {
             InitializeComponent();
-            Functions = new List<string>();
 
-            MethodInfo[] methodInfos = typeof(Calculator).GetMethods(BindingFlags.Public | BindingFlags.Instance);
+            twoPositionalFunctions = new List<string>();
+            onePositionalFunctions = new List<string>();
 
-            foreach (var item in methodInfos)
-            {
-                Functions.Add(item.Name);
-            }
+            _calculator = new Calculator();
 
-            Combo.ItemsSource = Functions;
+            twoPositionalFunctions.Add("Biggest Common Diviser");
+            twoPositionalFunctions.Add("Geometric Mean");
+            twoPositionalFunctions.Add("Smallest Common Multiplier");
+
+            onePositionalFunctions.Add("Get Simple Multy Count");
+
+
+            Combo.ItemsSource = twoPositionalFunctions;
         }
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            double num1 = Convert.ToDouble(MyTextBox.Text);
+            double num2 = Convert.ToDouble(MyTextBox1.Text);
 
+            var comboSelectedOperation = Combo.SelectedItem.ToString();
+
+            switch (comboSelectedOperation)
+            {
+                case "Biggest Common Diviser":
+                    label.Content = _calculator.BiggestCommonDiviser((int)num1, (int)num2);
+                    break;
+                case "Geometric Mean":
+                    label.Content = _calculator.GeometricMean((int)num1, (int)num2);
+                    break;
+                case "Smallest Common Multiplier":
+                    label.Content = _calculator.SmallestCommonMultiplier((int)num1, (int)num2);
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }
