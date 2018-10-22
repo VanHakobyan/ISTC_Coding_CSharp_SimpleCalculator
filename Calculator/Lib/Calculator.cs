@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace Lib
 {
@@ -17,7 +18,6 @@ namespace Lib
                 }
                 while(a % i == 0)
                     a /= i;
-
                 i++;
             }
             return count;
@@ -54,6 +54,19 @@ namespace Lib
                 return false;
             }
         }
+      
+      public bool GetSymtricNumber (ulong a)
+      {
+            string N = Convert.ToString(a);
+            for (int i = 0; i < N.Length; i++)
+            {
+                if (N[i] != N[N.Length - i])
+                    return false;
+            }
+            return true;
+ 
+      }
+
 
         public int BiggestCommonDiviser(int a, int b)
         {
