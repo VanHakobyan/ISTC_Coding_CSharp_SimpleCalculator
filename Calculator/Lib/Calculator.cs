@@ -54,5 +54,34 @@ namespace Lib
                 return false;
             }
         }
+      
+      public bool GetSymtricNumber (ulong a)
+      {
+            string N = Convert.ToString(a);
+            for (int i = 0; i < N.Length; i++)
+            {
+                if (N[i] != N[N.Length - i])
+                    return false;
+            }
+            return true;
+ 
+      }
+
+
+        public int BiggestCommonDiviser(int a, int b)
+        {
+            int min = a < b ? a : b;
+            int diviser = 1;
+            if (a % min == 0 && b % min == 0) return min;
+
+            for (int i = min / 2; i > 1; i++)
+                if (a % i == 0 && b % i == 0)
+                {
+                    diviser = i;
+                    break;
+                }
+
+            return diviser;
+        }
     }
 }
