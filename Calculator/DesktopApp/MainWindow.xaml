@@ -1,12 +1,60 @@
 ﻿<Window x:Class="DesktopApp.MainWindow"
+xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DesktopApp"
+        xmlns:local1="clr-namespace:DesktopApp.Helpers"
         mc:Ignorable="d"
-        Title="Calculator" Height="450" Width="800">
+        Title="Calculator" Height="450" Width="400">
+    <Window.Resources>
+        <ObjectDataProvider x:Key="dataFromEnum" MethodName="GetValues"
+                        ObjectType="{x:Type sys:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="local1:Operations"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </Window.Resources>
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="215*"/>
+            <ColumnDefinition Width="177*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <TextBlock TextAlignment="Center" Margin="5">Insert your numbers</TextBlock>
+
+            <StackPanel Grid.Row="0" Orientation="Vertical" Margin="0,20,10,0">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" Margin="15">Number1</TextBlock>
+                    <TextBox Name="MyTextBox" Height="20" Width="100"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" Margin="15">Number1</TextBlock>
+                    <TextBox Name="MyTextBox1" Height="20" Width="100"/>
+                </StackPanel>
+            </StackPanel>
+
+
+            <StackPanel Grid.Row="1" Orientation="Vertical" Margin="0,20,10,0">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" Margin="5">Select operation</TextBlock>
+                    <ComboBox Name="Combo">
+       
+                    </ComboBox>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+
+
     </Grid>
 </Window>
