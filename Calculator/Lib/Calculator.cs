@@ -55,7 +55,7 @@ namespace Lib
             }
         }
       
-      public bool GetSymtricNumber (ulong a)
+      public bool IsSymtricNumber (ulong a)
       {
             string N = Convert.ToString(a);
             for (int i = 0; i < N.Length; i++)
