@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace Lib
 {
@@ -17,7 +18,6 @@ namespace Lib
                 }
                 while(a % i == 0)
                     a /= i;
-
                 i++;
             }
             return count;
