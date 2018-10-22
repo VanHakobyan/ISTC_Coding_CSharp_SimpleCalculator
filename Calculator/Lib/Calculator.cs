@@ -15,7 +15,7 @@ namespace Lib
 
             while (num > 0)
             {
-                mult = (num % 2 == 0 && num % 10 > 0 && num % 10 < 7) ? num % 10 : mult;
+                mult = (num % 2 == 0 && num % 10 > 0 && num % 10 < 7) ? mult * num % 10 : mult;
                 num /= 10;
             }
 
