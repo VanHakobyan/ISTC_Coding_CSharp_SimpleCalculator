@@ -82,6 +82,20 @@ namespace Lib
                 }
 
             return diviser;
+                                 
         }
+
+        public double GeometricMean(double a , double b)
+        {
+            double N1 = Convert.ToDouble(a);
+            double N2 = Convert.ToDouble(a);
+            double GeomMean = 0;
+            if (N1 != 0 && N2 != 0)
+            {
+                 GeomMean = (N1 * N2) / 2;
+            }
+            return GeomMean;
+        }
+        
     }
 }
