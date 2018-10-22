@@ -67,5 +67,21 @@ namespace Lib
  
       }
 
+
+        public int BiggestCommonDiviser(int a, int b)
+        {
+            int min = a < b ? a : b;
+            int diviser = 1;
+            if (a % min == 0 && b % min == 0) return min;
+
+            for (int i = min / 2; i > 1; i++)
+                if (a % i == 0 && b % i == 0)
+                {
+                    diviser = i;
+                    break;
+                }
+
+            return diviser;
+        }
     }
 }
