@@ -70,5 +70,12 @@ namespace Lib
 
             return diviser;
         }
+
+        public int SmallestCommonMultiplier(int a, int b)
+        {
+            return a * b / BiggestCommonDiviser(a, b);
+        }
+
+
     }
 }
