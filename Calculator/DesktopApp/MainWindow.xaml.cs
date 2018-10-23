@@ -25,28 +25,75 @@ namespace DesktopApp
     /// </summary>
     public partial class MainWindow : Window
     {
-        public Calculator _calc;
+        #region "Private fields"
+        private List<Operations> TwoPosOperationsList { get; set; }
+        private List<Operations> OnePosOperationsList { get; set; }
+        #endregion "Private fields"
 
-        public List<Operations> TwoPosOperationsList { get; set; }
-        public List<Operations> OnePosOperationsList { get; set; }
+        #region "ctor"
         public MainWindow()
         {
             InitializeComponent();
-            _calc = new Calculator();
-            GetOperationsInfo(); //this is now local, some day will come from db
+            //this is now local, some day will come from db (data base)
+            GetOperationsInfo();
 
-            //Bind Two positional operations          
+            //Bind Two positional operations (to see in dropdown)
             TwoPosOperations.ItemsSource = TwoPosOperationsList;
             TwoPosOperations.SelectedValuePath = "Id";
             TwoPosOperations.DisplayMemberPath = "Name";
 
-            //Bind One positional operations
+            //Bind One positional operations (to see in dropdown)
             OnePosOperations.ItemsSource = OnePosOperationsList;
             OnePosOperations.SelectedValuePath = "Id";
             OnePosOperations.DisplayMemberPath = "Name";
 
         }
+        #endregion "ctor"
 
+        #region "Helpers"
+        
+        //Prevent user add text in inputs
+        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
+        }
+
+        private static object Caller(String myclass, String mymethod, double param1, double param2, bool isTwoPosOperation = false)
+        {
+            // Get a type from the string 
+            Type type = GetTypeByName(myclass);
+            // Create an instance of that type
+            Object obj = Activator.CreateInstance(type);
+            // Retrieve the method you are looking for
+            MethodInfo methodInfo = type.GetMethod(mymethod);
+            // Invoke the method on the instance we created above
+            //methodInfo.Invoke(obj, null);
+            object returnValue = isTwoPosOperation ? Convert.ToInt32(methodInfo.Invoke(obj, new object[] { param1, param2 })) : Convert.ToInt32(methodInfo.Invoke(obj, new object[] { param1 }));
+
+            return returnValue;
+        }
+
+        private static Type GetTypeByName(string className)
+        {
+            Type returnVal = null;
+
+            foreach (Assembly a in AppDomain.CurrentDomain.GetAssemblies())
+            {
+                Type[] assemblyTypes = a.GetTypes();
+                for (int j = 0; j < assemblyTypes.Length; j++)
+                {
+                    if (assemblyTypes[j].Name == className)
+                    {
+                        returnVal = (assemblyTypes[j]);
+                    }
+                }
+            }
+
+            return returnVal;
+        }
+
+        //Just manually add info
         private void GetOperationsInfo()
         {
             TwoPosOperationsList = new List<Operations>
@@ -143,13 +190,9 @@ namespace DesktopApp
 
         }
 
+        #endregion "Helpers"
 
-        //don't let the input to be text.. only numbers
-        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
-        {
-            Regex regex = new Regex("[^0-9]+");
-            e.Handled = regex.IsMatch(e.Text);
-        }
+        #region "Calculations"
 
         private void TwoPosCalculate_Click(object sender, RoutedEventArgs e)
         {
@@ -167,41 +210,6 @@ namespace DesktopApp
             else
                 MessageBox.Show("Խնդրում ենք լրացնել դաշտերը․․․");
         }
-
-        static object Caller(String myclass, String mymethod, double param1, double param2, bool isTwoPosOperation = false)
-        {
-            // Get a type from the string 
-            Type type = GetTypeByName(myclass);
-            // Create an instance of that type
-            Object obj = Activator.CreateInstance(type);
-            // Retrieve the method you are looking for
-            MethodInfo methodInfo = type.GetMethod(mymethod);
-            // Invoke the method on the instance we created above
-            //methodInfo.Invoke(obj, null);
-            object returnValue = isTwoPosOperation ? Convert.ToInt32(methodInfo.Invoke(obj, new object[] { param1, param2 })) : Convert.ToInt32(methodInfo.Invoke(obj, new object[] { param1 }));
-
-            return returnValue;
-        }
-
-        public static Type GetTypeByName(string className)
-        {
-            Type returnVal = null;
-
-            foreach (Assembly a in AppDomain.CurrentDomain.GetAssemblies())
-            {
-                Type[] assemblyTypes = a.GetTypes();
-                for (int j = 0; j < assemblyTypes.Length; j++)
-                {
-                    if (assemblyTypes[j].Name == className)
-                    {
-                        returnVal = (assemblyTypes[j]);
-                    }
-                }
-            }
-
-            return returnVal;
-        }
-
         private void OnePosCalculate_Click(object sender, RoutedEventArgs e)
         {
             if (onePosNum.Text != "" && OnePosOperations.SelectedItem != null)
@@ -216,70 +224,7 @@ namespace DesktopApp
             else
                 MessageBox.Show("Խնդրում ենք լրացնել դաշտերը․․․");
         }
+
+        #endregion "Calculations"
     }
 }
-
-//ObservableCollection<int> Functions;
-//List<string> twoPositionalFunctions;
-//List<string> onePositionalFunctions;
-
-//Calculator _calculator;
-//for (int i = 0; i < 10; i++)
-//{
-//    Button newBtn = CreateButton(i);
-//    Calc.Children.Add(newBtn);
-//    newBtn.Click += new RoutedEventHandler(this.ButtonClick);
-//}
-//
-//
-//
-//
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-//
-//
-
-//twoPositionalFunctions = new List<string>();
-//onePositionalFunctions = new List<string>();
-
-//_calculator = new Calculator();
-
-//twoPositionalFunctions.Add("Biggest Common Diviser");
-//twoPositionalFunctions.Add("Geometric Mean");
-//twoPositionalFunctions.Add("Smallest Common Multiplier");
-
-//onePositionalFunctions.Add("Get Simple Multy Count");
-
-
-//Combo.ItemsSource = twoPositionalFunctions;
-
-//double num1 = Convert.ToDouble(MyTextBox.Text);
-//double num2 = Convert.ToDouble(MyTextBox1.Text);
-
-//var comboSelectedOperation = Combo.SelectedItem.ToString();
-
-//            switch (comboSelectedOperation)
-//            {
-//                case "Biggest Common Diviser":
-//                    label.Content = _calculator.BiggestCommonDiviser((int) num1, (int) num2);
-//                    break;
-//                case "Geometric Mean":
-//                    label.Content = _calculator.GeometricMean((int) num1, (int) num2);
-//                    break;
-//                case "Smallest Common Multiplier":
-//                    label.Content = _calculator.SmallestCommonMultiplier((int) num1, (int) num2);
-//                    break;
-//                default:
-//                    break;
-//            }
