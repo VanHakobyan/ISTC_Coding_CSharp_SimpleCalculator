@@ -42,18 +42,21 @@ namespace Lib
             }
             return count;
         }
+        /// <summary>
+        /// 14.	Հաշվել տրված թվի 7-ից փոքր զույգ թվանշանների արտադրյալը։
+        /// </summary>
+        /// <param name="num"></param>
+        /// <returns></returns>
         public int EvenDigitsMult(int num)
         {
-            int mult = 1;
-            num = Math.Abs(num);
-
+            int mult = 1; num = ~num + 1;
             while (num > 0)
             {
-                mult = (num % 2 == 0 && num % 10 > 0 && num % 10 < 7) ? mult * num % 10 : mult;
+                int t = num % 10;
+                mult = (num % 2 == 0 && t > 0 && t < 7) ? mult * t : mult;
                 num /= 10;
             }
-
-            return (mult > 1) ? mult : int.MinValue;
+            return (mult > 1) ? mult : -1;
         }
         public bool IsPerfect(int number)
         {
@@ -98,10 +101,10 @@ namespace Lib
                     return false;
             return true;
         }
-        public int Factorial(int number)
+        public int Factorial(int n)
         {
-            if (number == 1) return 1;
-            return Factorial(number - 1) * number;
+            if (n == 1) return 1;
+            return n * Factorial(n - 1);
         }
         public bool IsFactorialNew(int number)
         {
