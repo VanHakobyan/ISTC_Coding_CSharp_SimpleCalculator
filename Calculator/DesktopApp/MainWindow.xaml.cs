@@ -25,99 +25,117 @@ namespace DesktopApp
     /// </summary>
     public partial class MainWindow : Window
     {
-        public List<Operations> operations;
+        public List<Operations> TwoPosOperationsList { get; set; }
+        public List<Operations> OnePosOperationsList { get; set; }
         public MainWindow()
         {
             InitializeComponent();
             GetOperationsInfo(); //this is now local, some day will come from db
 
-            foreach (var op in operations.Where(w => w.Type == OperationType.TwoPosOperation))
-            {
-                TwoPosOperations.Items.Add(op.Name);
-            }
+            //Bind Two positional operations          
+            TwoPosOperations.ItemsSource = TwoPosOperationsList;
+            TwoPosOperations.SelectedValuePath = "Id";
+            TwoPosOperations.DisplayMemberPath = "Name";
 
-            foreach (var op in operations.Where(w => w.Type == OperationType.OnePosOperation))
-            {
-                OnePosOperations.Items.Add(op.Name);
-            }
+            //Bind One positional operations
+            OnePosOperations.ItemsSource = OnePosOperationsList;
+            OnePosOperations.SelectedValuePath = "Id";
+            OnePosOperations.DisplayMemberPath = "Name";
+                        
         }
 
         private void GetOperationsInfo()
         {
-            operations = new List<Operations>
-            {
+            TwoPosOperationsList = new List<Operations>
+            {                
                 new Operations
                 {
-                    Name = "4-ից մեծ կենտ թվանշանների գումար",
-                    Description = "Հաշվում է տրված թվի 4-ից մեծ կենտ թվանշանների գումարը։",
-                    Type = OperationType.OnePosOperation
-                },
-                new Operations
-                {
-                    Name = "Պարզ արտադրիչների քանակ",
-                    Description = "Հաշվում է տրված բնական թվի պարզ արտադրիչների քանակը",
-                    Type = OperationType.OnePosOperation
-                },
-                new Operations
-                {
-                    Name = "7-ից փոքր զույգ թվանշանների արտադրյալ",
-                    Description = "Հաշվում է տրված թվի 7-ից փոքր զույգ թվանշանների արտադրյալը։",
-                    Type = OperationType.OnePosOperation
-                },
-                new Operations
-                {
-                    Name = "Ստուգել կատարյալ լինելը",
-                    Description = "Պարզում է, արդյոք, տրված թիվը կատարյալ է։",
-                    Type = OperationType.OnePosOperation
-                },
-                new Operations
-                {
-                    Name = "Ստուգել սիմետրիկ լինելը",
-                    Description = "Պարզում է, արդյոք, տրված թիվը սիմետրիկ է։",
-                    Type = OperationType.OnePosOperation
-                },
-                new Operations
-                {
-                    Name = "Ստուգել պարզ լինելը",
-                    Description = "Ստուգում է, արդյոք, տրված թիվը պարզ է։",
-                    Type = OperationType.OnePosOperation
-                },
-                new Operations
-                {
-                    Name = "Ստուգել նվազող հաջ․ լինելը",
-                    Description = "Ստուգում է, տրված թվի թվանշանները ձախից աջ դիտարկելիս կազմում են, արդյոք, նվազող հաջորդականություն",
-                    Type = OperationType.OnePosOperation
-                },
-                new Operations
-                {
-                    Name = "Պարզել, որևէ թվի ֆակտորիալ լինելը",
-                    Description = "Պարզում է, հանդիսանում է, արդյոք, տրված թիվը որևէ թվի ֆակտորիալ։",
-                    Type = OperationType.OnePosOperation
-                },
-                new Operations
-                {
+                    Id = 9,
                     Name = "Ամենամեծ ընհանուր բաժանարար",
                     Description = "Հաշվում է 2 թվերի ամենամեծ ընհանուր բաժանարարը:",
                     Type = OperationType.TwoPosOperation
                 },
                 new Operations
                 {
+                    Id = 10,
                     Name = "Ամենափոքր ընհանուր բազմապատիկը",
                     Description = "Հաշվում է 2 թվերի ամենափոքր ընհանուր բազմապատիկը։",
                     Type = OperationType.TwoPosOperation
                 },
                 new Operations
                 {
+                    Id = 11,
                     Name = "Միջին թվաբանական",
                     Description = "Հաշվում է 2 թվերի միջին թվաբանականը։",
                     Type = OperationType.TwoPosOperation
                 },
                 new Operations
                 {
+                    Id = 12,
                     Name = "Միջին երկրաչափականը",
                     Description = "Հաշվում է 2 թվերի միջին երկրաչափականը։",
                     Type = OperationType.TwoPosOperation
                 }
+            };
+
+            OnePosOperationsList = new List<Operations>
+            {
+                new Operations
+                {
+                    Id = 1,
+                    Name = "4-ից մեծ կենտ թվանշանների գումար",
+                    Description = "Հաշվում է տրված թվի 4-ից մեծ կենտ թվանշանների գումարը։",
+                    Type = OperationType.OnePosOperation
+                },
+                new Operations
+                {
+                    Id = 2,
+                    Name = "Պարզ արտադրիչների քանակ",
+                    Description = "Հաշվում է տրված բնական թվի պարզ արտադրիչների քանակը",
+                    Type = OperationType.OnePosOperation
+                },
+                new Operations
+                {
+                    Id = 3,
+                    Name = "7-ից փոքր զույգ թվանշանների արտադրյալ",
+                    Description = "Հաշվում է տրված թվի 7-ից փոքր զույգ թվանշանների արտադրյալը։",
+                    Type = OperationType.OnePosOperation
+                },
+                new Operations
+                {
+                    Id = 4,
+                    Name = "Ստուգել կատարյալ լինելը",
+                    Description = "Պարզում է, արդյոք, տրված թիվը կատարյալ է։",
+                    Type = OperationType.OnePosOperation
+                },
+                new Operations
+                {
+                    Id = 5,
+                    Name = "Ստուգել սիմետրիկ լինելը",
+                    Description = "Պարզում է, արդյոք, տրված թիվը սիմետրիկ է։",
+                    Type = OperationType.OnePosOperation
+                },
+                new Operations
+                {
+                    Id = 6,
+                    Name = "Ստուգել պարզ լինելը",
+                    Description = "Ստուգում է, արդյոք, տրված թիվը պարզ է։",
+                    Type = OperationType.OnePosOperation
+                },
+                new Operations
+                {
+                    Id = 7,
+                    Name = "Ստուգել նվազող հաջ․ լինելը",
+                    Description = "Ստուգում է, տրված թվի թվանշանները ձախից աջ դիտարկելիս կազմում են, արդյոք, նվազող հաջորդականություն",
+                    Type = OperationType.OnePosOperation
+                },
+                new Operations
+                {
+                    Id = 8,
+                    Name = "Պարզել, որևէ թվի ֆակտորիալ լինելը",
+                    Description = "Պարզում է, հանդիսանում է, արդյոք, տրված թիվը որևէ թվի ֆակտորիալ։",
+                    Type = OperationType.OnePosOperation
+                },
             };
 
         }
@@ -135,8 +153,10 @@ namespace DesktopApp
             if (twoPosFrstNum.Text != "" && 
                 TwoPosOperations.SelectedItem != null)
             {
-                switch (TwoPosOperations.SelectedItem)
+                var selectedItem = (Operations)TwoPosOperations.SelectedItem;
+                switch (selectedItem.Id)
                 {
+                    
                     default:
                         break;
                 }

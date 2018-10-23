@@ -4,11 +4,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Calculator" Height="350" Width="550" ResizeMode="NoResize">
+        Title="Calculator" Height="350" Width="528" ResizeMode="NoResize">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition  Width="Auto"/>
-            <ColumnDefinition />
+            <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
 
         <Border Grid.Column="0" BorderBrush="Black" BorderThickness="2">
@@ -29,7 +29,7 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <TextBox Name="twoPosFrstNum" Grid.Column="0" Width="90" Height="20" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5"/>
-                    <Label Grid.Column="1" VerticalAlignment="Center">Ներմուծեք առաջին թիվը</Label>
+                    <Label Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left">Ներմուծեք առաջին թիվը</Label>
                 </Grid>
                 <Grid Grid.Row="2">
                     <Grid.ColumnDefinitions>
@@ -37,15 +37,15 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <TextBox Name="twoPosScndNum" Grid.Column="0" Width="90" Height="20" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5"/>
-                    <Label Grid.Column="1" VerticalAlignment="Center">Ներմուծեք երկրորդ թիվը</Label>
+                    <Label Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left">Ներմուծեք երկրորդ թիվը</Label>
                 </Grid>
                 <Grid Grid.Row="3">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
+                        <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <ComboBox Name="TwoPosOperations" Grid.Column="0" Width="90" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5"/>
-                    <Label Grid.Column="1" VerticalAlignment="Center">Ընտրեք գործողությունը</Label>
+                    <Label Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left">Ընտրեք գործողությունը</Label>
                 </Grid>
                 <TextBlock Grid.Row="4" Name="TwoPosIntro" Text="" HorizontalAlignment="Left" Margin="15"/>
                 <Button Name="TwoPosCalculate" Grid.Row="5" Content="Հաշվել" Height="20" Width="90" Margin="145,15,15,0" Click="TwoPosCalculate_Click"/>
@@ -54,8 +54,8 @@
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <Label Grid.Column="0" VerticalAlignment="Center" FontWeight="Bold">Արդյունք ։ </Label>
-                    <TextBlock Grid.Column="1" VerticalAlignment="Center" Text=""/>
+                    <Label Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold">Արդյունք ։ </Label>
+                    <TextBlock Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Text=""/>
 
                 </Grid>
             </Grid>
@@ -73,11 +73,11 @@
                 <TextBlock Grid.Row="0" Style="{StaticResource Titles}" Text="Միտեղանի Գործողություններ" HorizontalAlignment="Center" Margin="5"/>
                 <Grid Grid.Row="1">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
+                        <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <TextBox Name="onePosNum" Grid.Column="0" Width="90" Height="20" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5"/>
-                    <Label Grid.Column="1" VerticalAlignment="Center">Ներմուծեք թիվը</Label>
+                    <Label Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left">Ներմուծեք թիվը</Label>
                 </Grid>
                 <Grid Grid.Row="2">
                     <Grid.ColumnDefinitions>
