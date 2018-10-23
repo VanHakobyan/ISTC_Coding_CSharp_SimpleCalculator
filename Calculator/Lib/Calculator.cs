@@ -7,15 +7,15 @@ namespace Lib
     {
         #region "OnePositionalOperations"
 
-        public int OddDigitSum(int num)
+        public double OddDigitSum(double num)
         {
             int N = Convert.ToString(num).Length;
-            int[] number = new int[N];
-            int sum = 0;
+            double[] number = new double[N];
+            double sum = 0;
             bool flag = false;
             for (int i = 0; i < number.Length; i++)
             {
-                number[i] = num / (int)Math.Pow(10, i) % 10;
+                number[i] = num / Math.Pow(10, i) % 10;
                 if (number[i] % 2 != 0 && number[i] > 4)
                 {
                     sum += number[i];
@@ -25,9 +25,9 @@ namespace Lib
             }
             return (flag) ? sum : -1;
         }
-        public int GetSimpleMultCount(int a)
+        public int GetSimpleMultCount(double a)
         {
-            int[] mem = new int[500];
+            double[] mem = new double[500];
             int count = 0, i = 2;
             while (a > 0)
             {
@@ -42,9 +42,9 @@ namespace Lib
             }
             return count;
         }
-        public int EvenDigitsMult(int num)
+        public double EvenDigitsMult(double num)
         {
-            int mult = 1;
+            double mult = 1;
             num = Math.Abs(num);
 
             while (num > 0)
@@ -55,7 +55,7 @@ namespace Lib
 
             return (mult > 1) ? mult : int.MinValue;
         }
-        public bool IsPerfect(int number)
+        public bool IsPerfect(double number)
         {
             int divisorSum = 0;
             for (int i = 1; i < number; i++)
@@ -74,7 +74,7 @@ namespace Lib
                 return false;
             }
         }
-        public bool IsNumberPrime(int n)
+        public bool IsNumberPrime(double n)
         {
             for (int i = 2; i < n; i++)
             {
@@ -85,7 +85,7 @@ namespace Lib
             }
             return true;
         }
-        public bool IsSymtricNumber(ulong a)
+        public bool IsSymtricNumber(double a)
         {
             string N = Convert.ToString(a);
             for (int i = 0; i < N.Length; i++)
@@ -96,26 +96,26 @@ namespace Lib
             return true;
 
         }
-        static bool IsNumberDecrease(int number)
+        static bool IsNumberDecrease(double number)
         {
-            int n = number, numCount = (int)Math.Log10(number);
+            double n = number, numCount = (int)Math.Log10(number);
             while (n > 0 && numCount > 0)
             {
-                int a = n / (int)Math.Pow(10, numCount);
-                int temp = n % (int)Math.Pow(10, numCount);
-                int b = temp / (int)Math.Pow(10, numCount - 1);
+                double a = n / Math.Pow(10, numCount);
+                double temp = n % Math.Pow(10, numCount);
+                double b = temp / Math.Pow(10, numCount - 1);
                 if (a <= b) return false;
-                n %= (int)Math.Pow(10, numCount);
+                n %= Math.Pow(10, numCount);
                 numCount--;
             }
             return true;
         }
-        public int Factorial(int number)
+        public double Factorial(double number)
         {
             if (number == 1) return 1;
             return Factorial(number - 1) * number;
         }
-        public bool IsFactorialNew(int number)
+        public bool IsFactorialNew(double number)
         {
             bool flag = true;
             for (int i = 1; i < number; i++)
@@ -137,13 +137,13 @@ namespace Lib
 
         #region "TwoPositionalOperations"
 
-        public int BiggestCommonDiviser(int a, int b)
+        public double BiggestCommonDiviser(double a, double b)
         {
-            int min = a < b ? a : b;
-            int diviser = 1;
+            double min = a < b ? a : b;
+            double diviser = 1;
             if (a % min == 0 && b % min == 0) return min;
 
-            for (int i = min / 2; i > 1; i--)
+            for (double i = min / 2; i > 1; i--)
                 if (a % i == 0 && b % i == 0)
                 {
                     diviser = i;
@@ -163,12 +163,12 @@ namespace Lib
             return GeomMean;
 
         }
-        public double GeometricMean(int n, int b)
+        public double ArithmeticMean(double n, double b)
         {
             double c = (n + b) / 2;
             return c;
         }
-        public int SmallestCommonMultiplier(int a, int b)
+        public double SmallestCommonMultiplier(double a, double b)
         {
             return a * b / BiggestCommonDiviser(a, b);
         }
