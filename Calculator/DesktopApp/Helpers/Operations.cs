@@ -6,10 +6,28 @@ using System.Threading.Tasks;
 
 namespace DesktopApp.Helpers
 {
-    public enum Operations
+    public class Operations
     {
-        GetSimpleMultCount = 1,
-        EvenDigitsMult,
-        IsPerfect
+        public string Name{ get; set; }
+        public string Description { get; set; }
+        public OperationType Type { get; set; }
+        //OddDigitSum = 0,
+        //GetSimpleMultCount,
+        //EvenDigitsMult,
+        //IsPerfect,
+        //IsSymtricNumber,
+        //IsNumberPrime,
+        //IsNumberDecrease,
+        //Factorial,
+        //IsFactorialNew,
+        //BiggestCommonDiviser,
+        //GeometricMean,
+        //SmallestCommonMultiplier
+    }
+
+    public enum OperationType
+    {
+        OnePosOperation = 1,
+        TwoPosOperation
     }
 }

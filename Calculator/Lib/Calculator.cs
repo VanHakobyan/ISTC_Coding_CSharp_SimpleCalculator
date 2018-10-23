@@ -5,6 +5,8 @@ namespace Lib
 {
     public class Calculator
     {
+        #region "OnePositionalOperations"
+
         public int OddDigitSum(int num)
         {
             int N = Convert.ToString(num).Length;
@@ -72,47 +74,6 @@ namespace Lib
                 return false;
             }
         }
-
-        public bool IsSymtricNumber(ulong a)
-        {
-            string N = Convert.ToString(a);
-            for (int i = 0; i < N.Length; i++)
-            {
-                if (N[i] != N[N.Length - i])
-                    return false;
-            }
-            return true;
-
-        }
-
-
-        public int BiggestCommonDiviser(int a, int b)
-        {
-            int min = a < b ? a : b;
-            int diviser = 1;
-            if (a % min == 0 && b % min == 0) return min;
-
-            for (int i = min / 2; i > 1; i--)
-                if (a % i == 0 && b % i == 0)
-                {
-                    diviser = i;
-                    break;
-                }
-
-            return diviser;
-
-        }
-
-        public double GeometricMean(double a, double b)
-        {
-            double GeomMean = 0;
-            if (a != 0 && b != 0)
-            {
-                GeomMean = (a * b) / 2;
-            }
-            return GeomMean;
-
-        }
         public bool IsNumberPrime(int n)
         {
             for (int i = 2; i < n; i++)
@@ -124,37 +85,17 @@ namespace Lib
             }
             return true;
         }
-        public double GeometricMean(int n, int b)
+        public bool IsSymtricNumber(ulong a)
         {
-            double c = (n + b) / 2;
-            return c;
-        }
-
-
-        public int SmallestCommonMultiplier(int a, int b)
-        {
-            return a * b / BiggestCommonDiviser(a, b);
-        }
-        /* public bool IsFactorial (int number)
-        {
-            int product = 1;
-            bool flag = true;
-            for (int i = 1; i < number; i++)
+            string N = Convert.ToString(a);
+            for (int i = 0; i < N.Length; i++)
             {
-                product *= i;
-                if (product == number)
-                {
-                    flag = true;
-                    break;
-                }
-                else
-                {
-                   flag = false;
-                }
+                if (N[i] != N[N.Length - i])
+                    return false;
             }
-            return flag ? true : false;
-        } 
-        */
+            return true;
+
+        }
         static bool IsNumberDecrease(int number)
         {
             int n = number, numCount = (int)Math.Log10(number);
@@ -191,5 +132,69 @@ namespace Lib
             }
             return flag ? true : false;
         }
+
+        #endregion "OnePositionalOperations"
+
+        #region "TwoPositionalOperations"
+
+        public int BiggestCommonDiviser(int a, int b)
+        {
+            int min = a < b ? a : b;
+            int diviser = 1;
+            if (a % min == 0 && b % min == 0) return min;
+
+            for (int i = min / 2; i > 1; i--)
+                if (a % i == 0 && b % i == 0)
+                {
+                    diviser = i;
+                    break;
+                }
+
+            return diviser;
+
+        }
+        public double GeometricMean(double a, double b)
+        {
+            double GeomMean = 0;
+            if (a != 0 && b != 0)
+            {
+                GeomMean = (a * b) / 2;
+            }
+            return GeomMean;
+
+        }
+        public double GeometricMean(int n, int b)
+        {
+            double c = (n + b) / 2;
+            return c;
+        }
+        public int SmallestCommonMultiplier(int a, int b)
+        {
+            return a * b / BiggestCommonDiviser(a, b);
+        }
+
+        #endregion "TwoPositionalOperations"       
     }
 }
+
+
+/* public bool IsFactorial (int number)
+        {
+            int product = 1;
+            bool flag = true;
+            for (int i = 1; i < number; i++)
+            {
+                product *= i;
+                if (product == number)
+                {
+                    flag = true;
+                    break;
+                }
+                else
+                {
+                   flag = false;
+                }
+            }
+            return flag ? true : false;
+        } 
+        */
