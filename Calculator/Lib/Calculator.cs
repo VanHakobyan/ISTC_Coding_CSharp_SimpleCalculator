@@ -92,16 +92,10 @@ namespace Lib
         }
         public bool IsNumberDecrease(int number)
         {
-            int n = number, numCount = (int)Math.Log10(number);
-            while (n > 0 && numCount > 0)
-            {
-                int a = n / (int)Math.Pow(10, numCount);
-                int temp = n % (int)Math.Pow(10, numCount);
-                int b = temp / (int)Math.Pow(10, numCount - 1);
-                if (a <= b) return false;
-                n %= (int)Math.Pow(10, numCount);
-                numCount--;
-            }
+            string numstr = number.ToString();
+            for (int i = 0; i < numstr.Length - 1; i++)
+                if (numstr[i] <= numstr[i + 1])
+                    return false;
             return true;
         }
         public int Factorial(int number)
