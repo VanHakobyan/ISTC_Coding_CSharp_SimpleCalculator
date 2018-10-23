@@ -85,13 +85,10 @@ namespace Lib
         public bool IsSymtricNumber(ulong a)
         {
             string N = Convert.ToString(a);
-            for (int i = 0; i < N.Length; i++)
-            {
-                if (N[i] != N[N.Length - i])
+            for (int i = 0; i < N.Length / 2; i++)
+                if (N[i] != N[N.Length - i - 1])
                     return false;
-            }
             return true;
-
         }
         public bool IsNumberDecrease(int number)
         {
