@@ -35,9 +35,9 @@ namespace Lib
                 {
                     mem[count] = i;
                     count++;
+                    while (a % i == 0)
+                        a /= i;
                 }
-                while (a % i == 0)
-                    a /= i;
                 i++;
             }
             return count;
