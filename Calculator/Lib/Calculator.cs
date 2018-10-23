@@ -49,7 +49,8 @@ namespace Lib
         /// <returns></returns>
         public int EvenDigitsMult(int num)
         {
-            int mult = 1; num = ~num + 1;
+            int mult = 1;
+            num = Math.Abs(num);
             while (num > 0)
             {
                 int t = num % 10;
