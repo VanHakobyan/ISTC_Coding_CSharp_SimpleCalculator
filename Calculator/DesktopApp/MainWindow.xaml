@@ -44,7 +44,7 @@
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <ComboBox Name="TwoPosOperations" Grid.Column="0" Width="90" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5"/>
+                    <ComboBox Name="TwoPosOperations" Grid.Column="0" Width="90" Height="30" Padding="7" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5"/>
                     <Label Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left">Ընտրեք գործողությունը</Label>
                 </Grid>
                 <TextBlock Grid.Row="4" Name="TwoPosIntro" Text="" HorizontalAlignment="Left" Margin="15"/>
@@ -55,7 +55,7 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <Label Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold">Արդյունք ։ </Label>
-                    <TextBlock Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Text=""/>
+                    <TextBlock Name="TwoPosResult" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Text=""/>
 
                 </Grid>
             </Grid>
@@ -84,7 +84,7 @@
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <ComboBox Name="OnePosOperations" Grid.Column="0" Width="90" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5"/>
+                    <ComboBox Name="OnePosOperations" Grid.Column="0" Width="90" Height="30" Padding="7" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5"/>
                     <Label Grid.Column="1" VerticalAlignment="Center">Ընտրեք գործողությունը</Label>
                 </Grid>
                 <TextBlock Grid.Row="3" Name="OnePosIntro" Text="" HorizontalAlignment="Left" Margin="15"/>
@@ -95,7 +95,7 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <Label Grid.Column="0" VerticalAlignment="Center" FontWeight="Bold">Արդյունք ։</Label>
-                    <TextBlock Grid.Column="1" VerticalAlignment="Center" Text=""/>
+                    <TextBlock Grid.Column="1" Name="OnePosResult" VerticalAlignment="Center" Text=""/>
 
                 </Grid>
             </Grid>

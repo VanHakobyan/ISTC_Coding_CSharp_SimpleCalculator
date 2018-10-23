@@ -25,11 +25,14 @@ namespace DesktopApp
     /// </summary>
     public partial class MainWindow : Window
     {
+        public Calculator _calc;
+
         public List<Operations> TwoPosOperationsList { get; set; }
         public List<Operations> OnePosOperationsList { get; set; }
         public MainWindow()
         {
             InitializeComponent();
+            _calc = new Calculator();
             GetOperationsInfo(); //this is now local, some day will come from db
 
             //Bind Two positional operations          
@@ -41,13 +44,13 @@ namespace DesktopApp
             OnePosOperations.ItemsSource = OnePosOperationsList;
             OnePosOperations.SelectedValuePath = "Id";
             OnePosOperations.DisplayMemberPath = "Name";
-                        
+
         }
 
         private void GetOperationsInfo()
         {
             TwoPosOperationsList = new List<Operations>
-            {                
+            {
                 new Operations
                 {
                     Id = 9,
@@ -150,24 +153,68 @@ namespace DesktopApp
 
         private void TwoPosCalculate_Click(object sender, RoutedEventArgs e)
         {
-            if (twoPosFrstNum.Text != "" && 
+            if (twoPosFrstNum.Text != "" && twoPosScndNum.Text != "" &&
                 TwoPosOperations.SelectedItem != null)
             {
+                var frstNum = Convert.ToDouble(twoPosFrstNum.Text);
+                var scndNum = Convert.ToDouble(twoPosScndNum.Text);
+
                 var selectedItem = (Operations)TwoPosOperations.SelectedItem;
-                switch (selectedItem.Id)
-                {
-                    
-                    default:
-                        break;
-                }
+                var result = Caller("Calculator", ((OperationsEnum)(selectedItem.Id)).ToString(), frstNum, scndNum, true);
+
+                TwoPosResult.Text = result.ToString();
             }
             else
                 MessageBox.Show("Խնդրում ենք լրացնել դաշտերը․․․");
         }
 
+        static object Caller(String myclass, String mymethod, double param1, double param2, bool isTwoPosOperation = false)
+        {
+            // Get a type from the string 
+            Type type = GetTypeByName(myclass);
+            // Create an instance of that type
+            Object obj = Activator.CreateInstance(type);
+            // Retrieve the method you are looking for
+            MethodInfo methodInfo = type.GetMethod(mymethod);
+            // Invoke the method on the instance we created above
+            //methodInfo.Invoke(obj, null);
+            object returnValue = isTwoPosOperation ? Convert.ToInt32(methodInfo.Invoke(obj, new object[] { param1, param2 })) : Convert.ToInt32(methodInfo.Invoke(obj, new object[] { param1 }));
+
+            return returnValue;
+        }
+
+        public static Type GetTypeByName(string className)
+        {
+            Type returnVal = null;
+
+            foreach (Assembly a in AppDomain.CurrentDomain.GetAssemblies())
+            {
+                Type[] assemblyTypes = a.GetTypes();
+                for (int j = 0; j < assemblyTypes.Length; j++)
+                {
+                    if (assemblyTypes[j].Name == className)
+                    {
+                        returnVal = (assemblyTypes[j]);
+                    }
+                }
+            }
+
+            return returnVal;
+        }
+
         private void OnePosCalculate_Click(object sender, RoutedEventArgs e)
         {
+            if (onePosNum.Text != "" && OnePosOperations.SelectedItem != null)
+            {
+                var num = Convert.ToDouble(onePosNum.Text);
 
+                var selectedItem = (Operations)OnePosOperations.SelectedItem;
+                var result = Caller("Calculator", ((OperationsEnum)(selectedItem.Id)).ToString(), num, 0);
+
+                OnePosResult.Text = result.ToString();
+            }
+            else
+                MessageBox.Show("Խնդրում ենք լրացնել դաշտերը․․․");
         }
     }
 }
