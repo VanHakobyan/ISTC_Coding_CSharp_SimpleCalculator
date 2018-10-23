@@ -76,13 +76,10 @@ namespace Lib
         }
         public bool IsNumberPrime(int n)
         {
-            for (int i = 2; i < n; i++)
-            {
+            if (n % 2 == 0) return false;
+            for (int i = 3; i * i < n; i += 2)
                 if (n % i == 0)
-                {
                     return false;
-                }
-            }
             return true;
         }
         public bool IsSymtricNumber(ulong a)
@@ -96,7 +93,7 @@ namespace Lib
             return true;
 
         }
-        static bool IsNumberDecrease(int number)
+        public bool IsNumberDecrease(int number)
         {
             int n = number, numCount = (int)Math.Log10(number);
             while (n > 0 && numCount > 0)
