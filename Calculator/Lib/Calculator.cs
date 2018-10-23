@@ -25,22 +25,26 @@ namespace Lib
             }
             return (flag) ? sum : -1;
         }
+
+        /// <summary>
+        /// 10.	Հաշվել տրված բնական թվի պարզ արտադրիչների քանակը։
+        /// </summary>
+        /// <param name="a"></param>
+        /// <returns></returns>
         public int GetSimpleMultCount(int a)
         {
             int[] mem = new int[500];
             int count = 0, i = 2;
-            while (a > 0)
+            while (a > 1)
             {
                 if (a % i == 0 && !mem.Contains(i))
                 {
-                    mem[count] = i;
-                    count++;
-                    while (a % i == 0)
-                        a /= i;
+                    mem[count++] = i;
+                    while (a % i == 0) a /= i;
                 }
                 i++;
             }
-            return count;
+            return ++count;
         }
         /// <summary>
         /// 14.	Հաշվել տրված թվի 7-ից փոքր զույգ թվանշանների արտադրյալը։
