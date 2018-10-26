@@ -37,14 +37,16 @@ namespace DesktopApp
 
         }
         #endregion "ctor"
-              
-        //Prevent user add text in inputs
+
+        #region "Validation"
+        //Prevent user add text in inputs. Let only numbers
         public void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {
             e.Handled = _helper.NumberValidation(e.Text);
-        }        
+        }
+        #endregion "Validation"
 
-       #region "Calculations"
+        #region "Calculations"
 
         private void TwoPosCalculate_Click(object sender, RoutedEventArgs e)
         {
@@ -55,13 +57,14 @@ namespace DesktopApp
                 var scndNum = twoPosScndNum.Text;
 
                 var selectedItem = (Operations)TwoPosOperations.SelectedItem;
-                var result = Caller("Calculator", ((OperationsEnum)(selectedItem.Id)).ToString(), frstNum, scndNum, true);
+                var result = Caller("Lib.Calculator", ((OperationsEnum)(selectedItem.Id)).ToString(), new string[] { frstNum, scndNum });
 
                 TwoPosResult.Text = result.ToString();
             }
             else
                 MessageBox.Show("Խնդրում ենք լրացնել դաշտերը․․․");
         }
+
         private void OnePosCalculate_Click(object sender, RoutedEventArgs e)
         {
             if (onePosNum.Text != "" && OnePosOperations.SelectedItem != null)
@@ -69,7 +72,7 @@ namespace DesktopApp
                 var number = onePosNum.Text;
 
                 var selectedItem = (Operations)OnePosOperations.SelectedItem;
-                var result = Caller("Calculator", ((OperationsEnum)(selectedItem.Id)).ToString(), number, "");
+                var result = Caller("Calculator", ((OperationsEnum)(selectedItem.Id)).ToString(), new string[] { number });
 
                 OnePosResult.Text = result.ToString();
             }
