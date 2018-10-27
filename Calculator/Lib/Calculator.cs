@@ -159,7 +159,7 @@ namespace Lib
             return GeomMean;
 
         }
-        public double GeometricMean(int n, int b)
+        public double ArithmeticMean(int n, int b)
         {
             double c = (n + b) / 2;
             return c;

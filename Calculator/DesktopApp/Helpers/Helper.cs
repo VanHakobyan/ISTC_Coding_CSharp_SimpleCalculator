@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Lib;
+using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Text.RegularExpressions;
@@ -7,6 +8,10 @@ namespace DesktopApp.Helpers
 {
     public class Helper
     {
+        #region "Private fields"
+        private static Calculator _calc;
+        #endregion "Private fields"
+
         #region "Public fields"
         public List<Operations> TwoPosOperationsList { get; set; }
         public List<Operations> OnePosOperationsList { get; set; }
@@ -16,6 +21,8 @@ namespace DesktopApp.Helpers
 
         public Helper()
         {
+            _calc = new Calculator();
+
             TwoPosOperationsList = new List<Operations>
             {
                 new Operations
@@ -128,7 +135,7 @@ namespace DesktopApp.Helpers
             IsSymtricNumber,
             IsNumberPrime,
             IsNumberDecrease,
-            Factorial,
+            IsFactorialNew,
             BiggestCommonDiviser,
             SmallestCommonMultiplier,
             ArithmeticMean,
@@ -150,66 +157,111 @@ namespace DesktopApp.Helpers
 
         #region "Public Methods"      
 
-        public static object Caller(String myClass, String myMethod, string[] setParams)
+        public static object GetCalcResult(string methodName, string firstNum, string secondNum = null)
         {
-            // Get a type from the string 
-            Type type = GetTypeByName(myClass);
-            // Create an instance of that type
-            Object obj = Activator.CreateInstance(type);
-            // Retrieve the method you are looking for
-            MethodInfo methodInfo = type.GetMethod(myMethod);
-            // Invoke the method on the instance we created above
-            //methodInfo.Invoke(obj, null);
+            object returnValue = null;
 
-            //Type Mytype = Type.GetType("parminfo");
-            //MethodBase Mymethodbase = Mytype.GetMethod("mymethod");
-
-            //https://stackoverflow.com/questions/972636/casting-a-variable-using-a-type-variable
-            //https://www.google.am/search?rlz=1C1GCEU_enAM819AM819&ei=geTSW5a4B42QmgWo2JZ4&q=convert+variable+to+type+c%23+dynamically&oq=convert+variable+to+type+c%23+dynam&gs_l=psy-ab.3.0.33i22i29i30k1l4.185940.204910.0.205867.39.30.2.7.8.0.191.3636.0j25.25.0....0...1c.1.64.psy-ab..5.34.3693...0j0i67k1j0i22i30k1.0.-6XG4MBfpgg
-
-            ParameterInfo[] paramsTypes = methodInfo.GetParameters();
-
-            //foreach (var item in setParams)
-            //{
-            //    var filterType = typeof(Filters);
-            //    var method = filterType.GetMethod(filter, BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Static);
-            //    if (method != null)
-            //    {
-            //        var parameters = method.GetParameters();
-            //        Type paramType = parameters[0].ParameterType;
-            //        value = Convert.ChangeType(method.Invoke(null, new[] { value }), paramType);
-            //    }
-            //}
-
-            object returnValue = 1; //isTwoPosOperation ? Convert.ToInt32(methodInfo.Invoke(obj, new object[] { param1, param2 })) : Convert.ToInt32(methodInfo.Invoke(obj, new object[] { param1 }));
-
-            return returnValue;
-        }
-
-        public static Type GetTypeByName(string classFullName)
-        {
-            Type returnVal = null;
-
-            foreach (Assembly a in AppDomain.CurrentDomain.GetAssemblies())
+            switch (methodName)
             {
-                Type[] assemblyTypes = a.GetTypes();
-                for (int j = 0; j < assemblyTypes.Length; j++)
-                {
-                    if (assemblyTypes[j].FullName == classFullName)
-                    {
-                        returnVal = (assemblyTypes[j]);
-                    }
-                }
+                case "BiggestCommonDiviser":
+                    returnValue = _calc.BiggestCommonDiviser(Convert.ToInt32(firstNum), Convert.ToInt32(secondNum));
+                        break;
+                case "GeometricMean":
+                    returnValue = _calc.GeometricMean(Convert.ToDouble(firstNum), Convert.ToDouble(secondNum));
+                    break;
+                case "ArithmeticMean":
+                    returnValue = _calc.ArithmeticMean(Convert.ToInt32(firstNum), Convert.ToInt32(secondNum));
+                    break;
+                case "SmallestCommonMultiplier":
+                    returnValue = _calc.SmallestCommonMultiplier(Convert.ToInt32(firstNum), Convert.ToInt32(secondNum));
+                    break;
+                case "OddDigitSum":
+                    returnValue = _calc.OddDigitSum(Convert.ToInt32(firstNum));
+                    break;
+                case "GetSimpleMultCount":
+                    returnValue = _calc.GetSimpleMultCount(Convert.ToInt32(firstNum));
+                    break;
+                case "EvenDigitsMult":
+                    returnValue = _calc.EvenDigitsMult(Convert.ToInt32(firstNum));
+                    break;
+                case "IsPerfect":
+                    returnValue = _calc.IsPerfect(Convert.ToInt32(firstNum));
+                    break;
+                case "IsNumberPrime":
+                    returnValue = _calc.IsNumberPrime(Convert.ToInt32(firstNum));
+                    break;
+                case "IsSymtricNumber":
+                    returnValue = _calc.IsSymtricNumber(Convert.ToUInt64(firstNum));
+                    break;
+                case "IsNumberDecrease":
+                    returnValue = _calc.IsNumberDecrease(Convert.ToInt32(firstNum));
+                    break;                
+                case "IsFactorialNew":
+                    returnValue = _calc.IsFactorialNew(Convert.ToInt32(firstNum));
+                    break;
+                default:
+                    break;
             }
 
-            return returnVal;
+            return returnValue;
         }
 
         #endregion
     }
 }
 
+#region "Bard tarberak"
+//public static Type GetTypeByName(string classFullName)
+//{
+//    Type returnVal = null;
 
+//    foreach (Assembly a in AppDomain.CurrentDomain.GetAssemblies())
+//    {
+//        Type[] assemblyTypes = a.GetTypes();
+//        for (int j = 0; j < assemblyTypes.Length; j++)
+//        {
+//            if (assemblyTypes[j].FullName == classFullName)
+//            {
+//                returnVal = (assemblyTypes[j]);
+//            }
+//        }
+//    }
+
+//    return returnVal;
+//}
+//// Get a type from the string 
+//Type type = GetTypeByName(myClass);
+//// Create an instance of that type
+//Object obj = Activator.CreateInstance(type);
+//// Retrieve the method you are looking for
+//MethodInfo methodInfo = type.GetMethod(myMethod);
+//// Invoke the method on the instance we created above
+////methodInfo.Invoke(obj, null);
+////Type Mytype = Type.GetType("parminfo");
+////MethodBase Mymethodbase = Mytype.GetMethod("mymethod");
+//ParameterInfo[] paramsTypes = methodInfo.GetParameters();
+//            for (int i = 0; i<setParams.Length; i++)
+//            {
+//                Type currType = Type.GetType("System." + paramsTypes[i].ToString().Substring(0, paramsTypes[i].ToString().IndexOf(' ')));
+//ConvertToType(ref setParams[i], currType);
+//            }
+//            object a = setParams[0].GetType();
+//object returnValue = 1; //isTwoPosOperation ? Convert.ToInt32(methodInfo.Invoke(obj, new object[] { param1, param2 })) : Convert.ToInt32(methodInfo.Invoke(obj, new object[] { param1 }));
+////public static void ConvertToType(ref object input, Type type)
+//{
+//    input = Convert.ChangeType(input, type);
+//}
+//foreach (var item in setParams)
+//{
+//    var filterType = typeof(Filters);
+//    var method = filterType.GetMethod(filter, BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Static);
+//    if (method != null)
+//    {
+//        var parameters = method.GetParameters();
+//        Type paramType = parameters[0].ParameterType;
+//        value = Convert.ChangeType(method.Invoke(null, new[] { value }), paramType);
+//    }
+//}
 ////Assembly assembly = Assembly.Load("System");
 ////Type typeToExecute = assembly.GetTypes()[0];
 //// Get a type from the string 
@@ -220,3 +272,5 @@ namespace DesktopApp.Helpers
 //// Retrieve the method you are looking for
 //string myMethod1 = "To" + paramsTypes[i].GetType().ToString();
 //MethodInfo methodInfo1 = type.GetMethod(myMethod1);
+#endregion
+

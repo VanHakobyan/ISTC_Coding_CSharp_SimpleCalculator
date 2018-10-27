@@ -22,7 +22,6 @@ namespace DesktopApp
         public MainWindow()
         {
             InitializeComponent();
-            Calculator _calc = new Calculator();
             _helper = new Helper();
 
             //Bind Two positional operations (to see in dropdown)
@@ -57,7 +56,7 @@ namespace DesktopApp
                 var scndNum = twoPosScndNum.Text;
 
                 var selectedItem = (Operations)TwoPosOperations.SelectedItem;
-                var result = Caller("Lib.Calculator", ((OperationsEnum)(selectedItem.Id)).ToString(), new string[] { frstNum, scndNum });
+                var result = GetCalcResult(((OperationsEnum)(selectedItem.Id)).ToString(), frstNum, scndNum);
 
                 TwoPosResult.Text = result.ToString();
             }
@@ -72,7 +71,7 @@ namespace DesktopApp
                 var number = onePosNum.Text;
 
                 var selectedItem = (Operations)OnePosOperations.SelectedItem;
-                var result = Caller("Calculator", ((OperationsEnum)(selectedItem.Id)).ToString(), new string[] { number });
+                var result = GetCalcResult(((OperationsEnum)(selectedItem.Id)).ToString(), number );
 
                 OnePosResult.Text = result.ToString();
             }
