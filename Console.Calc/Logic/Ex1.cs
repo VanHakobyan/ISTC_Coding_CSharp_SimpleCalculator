@@ -8,5 +8,14 @@ namespace Logic
 {
     public class Ex1
     {
+       static int Calculation (int a, int b )
+       {
+            int Sum = (a + b);
+            int Value1 = (a - b);
+            int Value2 = (a * b);
+            int value 3 = (a / b);
+
+       }
+
     }
 }
