@@ -8,8 +8,6 @@ namespace Logic
 {
     public class Ex5
     { 
-
-
         private static int FactNumber(int n)
         {
 
@@ -17,10 +15,6 @@ namespace Logic
             return n * FactNumber(n - 1);
 
         }
-        public static bool comparis(int a)
-        {
-            int n ;
-            for (int i = 1; i <= FactNumber(n); i++)
 
         public static bool Comparis(int a)
         {            
