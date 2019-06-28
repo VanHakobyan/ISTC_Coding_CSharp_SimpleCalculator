@@ -11,7 +11,8 @@ namespace Test
     {
         static void Main(string[] args)
         {
-            bool b = Ex7.CheckTheNumber(8);
+            int b=  Ex3.MaxBaj(8,12);
+            Console.WriteLine(b);
         }
     }
 }
