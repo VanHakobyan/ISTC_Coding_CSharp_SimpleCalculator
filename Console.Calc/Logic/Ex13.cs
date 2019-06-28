@@ -8,5 +8,18 @@ namespace Logic
 {
     public class Ex13
     {
+        public static int SumDigits(int number)
+        {
+            if (number == 0) return 0;
+
+            if (number % 10 > 4 && number % 2 != 0)
+            {
+                return (number % 10) + SumDigits(number / 10);
+            }
+            else
+            {
+                return SumDigits(number / 10);
+            }
+        }
     }
 }

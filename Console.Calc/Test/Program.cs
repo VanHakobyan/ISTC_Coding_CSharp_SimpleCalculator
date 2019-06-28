@@ -11,7 +11,10 @@ namespace Test
     {
         static void Main(string[] args)
         {
-            bool b = Ex7.CheckTheNumber(8);
+            Console.WriteLine(Logic.Ex4.MinMultiple(3,7));
+            Console.WriteLine(Ex9.IsSymmetrical(123454321));
+            Console.WriteLine(Ex13.SumDigits(5648231));
+
         }
     }
 }
