@@ -8,7 +8,7 @@ namespace Logic
 {
     public class Ex2
     {
-        static int arithAvg(int n1, int n2)
+        public static int arithAvg(int n1, int n2)
         {
             return (n1 + n2) / 2;
         }

@@ -8,7 +8,7 @@ namespace Logic
 {
     public class Ex8
     {
-        static bool SimpleNum(int n)
+        public static bool SimpleNum(int n)
         {
             int Qnt = 0;
             for (int i = 1; i <= n; i++)
