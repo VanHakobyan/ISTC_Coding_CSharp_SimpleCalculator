@@ -11,13 +11,16 @@ namespace Test
     {
         static void Main(string[] args)
         {
-            bool b = Ex7.CheckTheNumber(8);
+            bool c=Ex5.Comparis(6);
+            //bool b = Ex7.CheckTheNumber(8);
+            //Console.WriteLine(b);
+            //int b = Ex4.MinBazm(2,4);
+            Console.WriteLine(c);
+            
+            int b = Ex4.MinBazm(2,4);
             Console.WriteLine(b);
-            int h = Ex4.MinBazm(2,4);
-            Console.WriteLine(b);
-            int c=  Ex3.MaxBaj(8,12);
-            int k = Ex13.Sum(2594);
-            Console.WriteLine(b);
+
+            Console.WriteLine(Ex12.SmallestOddNumber(3587));
         }
     }
 }
