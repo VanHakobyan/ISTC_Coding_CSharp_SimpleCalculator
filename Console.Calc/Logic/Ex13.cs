@@ -21,6 +21,7 @@ namespace Logic
                 return SumDigits(number / 10);
             }
         }
+
         public static void Sum(int n)
         {
             //13.	Հաշվել տրված թվի 4-ից մեծ կենտ թվանշանների գումարը։

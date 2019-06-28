@@ -19,7 +19,7 @@ namespace Logic
         }
         public static bool comparis(int a)
         {
-            int n;
+            int n ;
             for (int i = 1; i <= FactNumber(n); i++)
             {
                 if (a == FactNumber(n))
