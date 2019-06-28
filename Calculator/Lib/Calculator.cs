@@ -5,6 +5,9 @@ namespace Lib
 {
     public class Calculator
     {
+        //mrrr
+        #region "OnePositionalOperations"
+
         public int OddDigitSum(int num)
         {
             int N = Convert.ToString(num).Length;
@@ -23,35 +26,43 @@ namespace Lib
             }
             return (flag) ? sum : -1;
         }
+
+        /// <summary>
+        /// 10.	Հաշվել տրված բնական թվի պարզ արտադրիչների քանակը։
+        /// </summary>
+        /// <param name="a"></param>
+        /// <returns></returns>
         public int GetSimpleMultCount(int a)
         {
             int[] mem = new int[500];
             int count = 0, i = 2;
-            while (a > 0)
+            while (a > 1)
             {
                 if (a % i == 0 && !mem.Contains(i))
                 {
-                    mem[count] = i;
-                    count++;
+                    mem[count++] = i;
+                    while (a % i == 0) a /= i;
                 }
-                while (a % i == 0)
-                    a /= i;
                 i++;
             }
-            return count;
+            return ++count;
         }
+        /// <summary>
+        /// 14.	Հաշվել տրված թվի 7-ից փոքր զույգ թվանշանների արտադրյալը։
+        /// </summary>
+        /// <param name="num"></param>
+        /// <returns></returns>
         public int EvenDigitsMult(int num)
         {
             int mult = 1;
             num = Math.Abs(num);
-
             while (num > 0)
             {
-                mult = (num % 2 == 0 && num % 10 > 0 && num % 10 < 7) ? mult * num % 10 : mult;
+                int t = num % 10;
+                mult = (num % 2 == 0 && t > 0 && t < 7) ? mult * t : mult;
                 num /= 10;
             }
-
-            return (mult > 1) ? mult : int.MinValue;
+            return (mult > 1) ? mult : -1;
         }
         public bool IsPerfect(int number)
         {
@@ -72,19 +83,56 @@ namespace Lib
                 return false;
             }
         }
-
+        public bool IsNumberPrime(int n)
+        {
+            if (n % 2 == 0) return false;
+            for (int i = 3; i * i < n; i += 2)
+                if (n % i == 0)
+                    return false;
+            return true;
+        }
         public bool IsSymtricNumber(ulong a)
         {
             string N = Convert.ToString(a);
-            for (int i = 0; i < N.Length; i++)
-            {
-                if (N[i] != N[N.Length - i])
+            for (int i = 0; i < N.Length / 2; i++)
+                if (N[i] != N[N.Length - i - 1])
                     return false;
-            }
             return true;
-
+        }
+        public bool IsNumberDecrease(int number)
+        {
+            string numstr = number.ToString();
+            for (int i = 0; i < numstr.Length - 1; i++)
+                if (numstr[i] <= numstr[i + 1])
+                    return false;
+            return true;
+        }
+        public int Factorial(int n)
+        {
+            if (n == 1) return 1;
+            return n * Factorial(n - 1);
+        }
+        public bool IsFactorialNew(int number)
+        {
+            bool flag = true;
+            for (int i = 1; i < number; i++)
+            {
+                if (Factorial(i) == number)
+                {
+                    flag = true;
+                    break;
+                }
+                else
+                {
+                    flag = false;
+                }
+            }
+            return flag ? true : false;
         }
 
+        #endregion "OnePositionalOperations"
+
+        #region "TwoPositionalOperations"
 
         public int BiggestCommonDiviser(int a, int b)
         {
@@ -92,7 +140,7 @@ namespace Lib
             int diviser = 1;
             if (a % min == 0 && b % min == 0) return min;
 
-            for (int i = min / 2; i > 1; i++)
+            for (int i = min / 2; i > 1; i--)
                 if (a % i == 0 && b % i == 0)
                 {
                     diviser = i;
@@ -102,7 +150,6 @@ namespace Lib
             return diviser;
 
         }
-
         public double GeometricMean(double a, double b)
         {
             double GeomMean = 0;
@@ -113,29 +160,22 @@ namespace Lib
             return GeomMean;
 
         }
-        public bool IsNumberPrime(int n)
-        {
-            for (int i = 2; i < n; i++)
-            {
-                if (n % i == 0)
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
-        public double GeometricMean(int n, int b)
+        public double ArithmeticMean(int n, int b)
         {
             double c = (n + b) / 2;
             return c;
         }
-
-
         public int SmallestCommonMultiplier(int a, int b)
         {
             return a * b / BiggestCommonDiviser(a, b);
         }
-        /* public bool IsFactorial (int number)
+
+        #endregion "TwoPositionalOperations"       
+    }
+}
+
+
+/* public bool IsFactorial (int number)
         {
             int product = 1;
             bool flag = true;
@@ -155,41 +195,3 @@ namespace Lib
             return flag ? true : false;
         } 
         */
-        static bool IsNumberDecrease(int number)
-        {
-            int n = number, numCount = (int)Math.Log10(number);
-            while (n > 0 && numCount > 0)
-            {
-                int a = n / (int)Math.Pow(10, numCount);
-                int temp = n % (int)Math.Pow(10, numCount);
-                int b = temp / (int)Math.Pow(10, numCount - 1);
-                if (a <= b) return false;
-                n %= (int)Math.Pow(10, numCount);
-                numCount--;
-            }
-            return true;
-        }
-        public int Factorial(int number)
-        {
-            if (number == 1) return 1;
-            return Factorial(number - 1) * number;
-        }
-        public bool IsFactorialNew(int number)
-        {
-            bool flag = true;
-            for (int i = 1; i < number; i++)
-            {
-                if (Factorial(i) == number)
-                {
-                    flag = true;
-                    break;
-                }
-                else
-                {
-                    flag = false;
-                }
-            }
-            return flag ? true : false;
-        }
-    }
-}

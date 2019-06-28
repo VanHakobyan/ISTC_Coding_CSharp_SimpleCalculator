@@ -2,20 +2,10 @@
 using Lib;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using static DesktopApp.Helpers.Helper;
 
 namespace DesktopApp
 {
@@ -24,52 +14,71 @@ namespace DesktopApp
     /// </summary>
     public partial class MainWindow : Window
     {
-        //ObservableCollection<int> Functions;
-        List<string> twoPositionalFunctions;
-        List<string> onePositionalFunctions;
+        #region "Private fields"
+        private Helper _helper;        
+        #endregion "Private fields"
 
-        Calculator _calculator;
-
+        #region "ctor"
         public MainWindow()
         {
             InitializeComponent();
+            _helper = new Helper();
 
-            twoPositionalFunctions = new List<string>();
-            onePositionalFunctions = new List<string>();
+            //Bind Two positional operations (to see in dropdown)
+            TwoPosOperations.ItemsSource = _helper.TwoPosOperationsList;
+            TwoPosOperations.SelectedValuePath = "Id";
+            TwoPosOperations.DisplayMemberPath = "Name";
 
-            _calculator = new Calculator();
+            //Bind One positional operations (to see in dropdown)
+            OnePosOperations.ItemsSource = _helper.OnePosOperationsList;
+            OnePosOperations.SelectedValuePath = "Id";
+            OnePosOperations.DisplayMemberPath = "Name";
 
-            twoPositionalFunctions.Add("Biggest Common Diviser");
-            twoPositionalFunctions.Add("Geometric Mean");
-            twoPositionalFunctions.Add("Smallest Common Multiplier");
-
-            onePositionalFunctions.Add("Get Simple Multy Count");
-
-
-            Combo.ItemsSource = twoPositionalFunctions;
         }
+        #endregion "ctor"
 
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        #region "Validation"
+        //Prevent user add text in inputs. Let only numbers
+        public void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {
-            double num1 = Convert.ToDouble(MyTextBox.Text);
-            double num2 = Convert.ToDouble(MyTextBox1.Text);
-
-            var comboSelectedOperation = Combo.SelectedItem.ToString();
-
-            switch (comboSelectedOperation)
-            {
-                case "Biggest Common Diviser":
-                    label.Content = _calculator.BiggestCommonDiviser((int)num1, (int)num2);
-                    break;
-                case "Geometric Mean":
-                    label.Content = _calculator.GeometricMean((int)num1, (int)num2);
-                    break;
-                case "Smallest Common Multiplier":
-                    label.Content = _calculator.SmallestCommonMultiplier((int)num1, (int)num2);
-                    break;
-                default:
-                    break;
-            }
+            e.Handled = _helper.NumberValidation(e.Text);
         }
+        #endregion "Validation"
+
+        #region "Calculations"
+
+        private void TwoPosCalculate_Click(object sender, RoutedEventArgs e)
+        {
+            if (twoPosFrstNum.Text != "" && twoPosScndNum.Text != "" &&
+                TwoPosOperations.SelectedItem != null)
+            {
+                var frstNum = twoPosFrstNum.Text;
+                var scndNum = twoPosScndNum.Text;
+
+                var selectedItem = (Operations)TwoPosOperations.SelectedItem;
+                var result = GetCalcResult(((OperationsEnum)(selectedItem.Id)).ToString(), frstNum, scndNum);
+
+                TwoPosResult.Text = result.ToString();
+            }
+            else
+                MessageBox.Show("Խնդրում ենք լրացնել դաշտերը․․․");
+        }
+
+        private void OnePosCalculate_Click(object sender, RoutedEventArgs e)
+        {
+            if (onePosNum.Text != "" && OnePosOperations.SelectedItem != null)
+            {
+                var number = onePosNum.Text;
+
+                var selectedItem = (Operations)OnePosOperations.SelectedItem;
+                var result = GetCalcResult(((OperationsEnum)(selectedItem.Id)).ToString(), number );
+
+                OnePosResult.Text = result.ToString();
+            }
+            else
+                MessageBox.Show("Խնդրում ենք լրացնել դաշտերը․․․");
+        }
+
+        #endregion "Calculations"
     }
 }

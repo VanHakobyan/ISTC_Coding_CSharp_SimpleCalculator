@@ -4,6 +4,9 @@
              xmlns:local="clr-namespace:DesktopApp"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <Style TargetType="TextBlock" x:Key="Titles">
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontSize" Value="14"></Setter>
+        </Style>
     </Application.Resources>
 </Application>
