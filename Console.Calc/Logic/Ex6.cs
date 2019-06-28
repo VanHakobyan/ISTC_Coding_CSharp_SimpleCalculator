@@ -8,9 +8,9 @@ namespace Logic
 {
     public class Ex6
     {
-        public static bool CheckIfFib(int N)
+        public static bool CheckIfFib(int n)
         {
-            int n = Int32.Parse(Console.ReadLine());
+           
             int fib;
             int a = 1;
             int b = 1;

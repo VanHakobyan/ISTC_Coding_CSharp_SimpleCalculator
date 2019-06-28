@@ -10,13 +10,9 @@ namespace Test
     class Program
     {
         static void Main(string[] args)
-        {
-            bool b = Ex6.CheckIfFib(8);
+        { 
+            bool b = Ex6.CheckIfFib(45);
             Console.WriteLine(b);
-
-
-
-
             
         }
     }
