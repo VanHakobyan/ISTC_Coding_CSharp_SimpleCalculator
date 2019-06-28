@@ -8,8 +8,6 @@ namespace Logic
 {
     public class Ex5
     { 
-
-
         private static int FactNumber(int n)
         {
 
