@@ -10,7 +10,7 @@ namespace Logic
     { 
 
 
-        public static int FactNumber(int n)
+        private static int FactNumber(int n)
         {
 
             if (n == 1) return 1;
@@ -21,11 +21,13 @@ namespace Logic
         {
             int n ;
             for (int i = 1; i <= FactNumber(n); i++)
+
+        public static bool Comparis(int a)
+        {            
+            for (int i = 1; i <= a; i++)
             {
-                if (a == FactNumber(n))
-                    return true;
-                else
-                    return false;
+                if (a == FactNumber(i))
+                    return true;                
             }
             return false;
         }
