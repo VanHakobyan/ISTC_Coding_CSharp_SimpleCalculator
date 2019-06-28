@@ -22,7 +22,7 @@ namespace Logic
             }
         }
 
-        public static void Sum(int n)
+        public static int Sum(int n)
         {
             //13.	Հաշվել տրված թվի 4-ից մեծ կենտ թվանշանների գումարը։
             int sum = 0;
