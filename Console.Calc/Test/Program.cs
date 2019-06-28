@@ -12,6 +12,7 @@ namespace Test
         static void Main(string[] args)
         {
             bool b = Ex7.CheckTheNumber(8);
+            Console.WriteLine(b);
         }
     }
 }
