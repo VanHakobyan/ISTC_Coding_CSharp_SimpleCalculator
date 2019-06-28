@@ -11,12 +11,13 @@ namespace Test
     {
         static void Main(string[] args)
         {
-            bool b = Ex7.CheckTheNumber(8);
+            bool b = Ex6.CheckIfFib(8);
             Console.WriteLine(b);
-            int b = Ex4.MinBazm(2,4);
-            Console.WriteLine(b);
-            int b=  Ex3.MaxBaj(8,12);
-            Console.WriteLine(b);
+
+
+
+
+            
         }
     }
 }
