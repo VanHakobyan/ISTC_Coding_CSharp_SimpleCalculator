@@ -8,5 +8,9 @@ namespace Logic
 {
     public class Ex6
     {
+        static bool Check(int n)
+        {
+            return n == (n - 1) + (n - 2);
+        }
     }
 }
