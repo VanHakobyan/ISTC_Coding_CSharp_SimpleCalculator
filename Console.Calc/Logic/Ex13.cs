@@ -8,5 +8,10 @@ namespace Logic
 {
     public class Ex13
     {
+        public static void Sum(int n)
+        {
+            //13.	Հաշվել տրված թվի 4-ից մեծ կենտ թվանշանների գումարը։
+            
+        }
     }
 }
