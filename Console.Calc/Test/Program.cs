@@ -15,6 +15,8 @@ namespace Test
             Console.WriteLine(b);
             int b = Ex4.MinBazm(2,4);
             Console.WriteLine(b);
+            int b=  Ex3.MaxBaj(8,12);
+            Console.WriteLine(b);
         }
     }
 }
