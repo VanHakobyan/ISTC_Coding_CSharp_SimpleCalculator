@@ -13,6 +13,8 @@ namespace Test
         {
             bool b = Ex7.CheckTheNumber(8);
             Console.WriteLine(b);
+
+            Console.WriteLine(Ex12.SmallestOddNumber(3587));
         }
     }
 }
